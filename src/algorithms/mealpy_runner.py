@@ -1,16 +1,34 @@
 from src.benchmarks.function_factory import ProblemFactory
 from mealpy import FloatVar, SHADE
 
-factory = ProblemFactory(ndim=30)
-objective, bounds = factory.get_problem(fid=1)
+def run_shade(fid, ndim, epoch, pop_size, wf):
+    factory = ProblemFactory(ndim=ndim)
+    objective, bounds = factory.get_problem(fid=fid)
 
-problem_dict = {
-    "fit_func": objective,
-    "lb": bounds[0].tolist(),
-    "ub": bounds[1].tolist(),
-    "minmax": "min",
-}
+    lb, ub = bounds
+    problem_dict = {
+        "obj_func": objective,
+        "bounds": FloatVar(lb=lb, ub=ub, name="delta"),
+        "minmax": "min",
+    }
 
-model = SHADE.OriginalSHADE(epoch=100, pop_size=30, wf=0.9)
-best = model.solve(problem_dict)
-print("Best solution (mealpy):", best.solution, best.target.fitness)
+    results = []
+
+    for seed in range (1):
+        model = SHADE.OriginalSHADE(epoch=epoch, pop_size=pop_size, wf=wf)
+        best = model.solve(problem_dict, seed=seed)
+
+        best_solution = best.solution
+        best_fitness = best.target.fitness
+
+        history = model.history.list_global_best_fit 
+
+        results.append({"id": fid,
+                        "seed": seed,
+                        "lb": lb,
+                        "ub": ub,
+                        "best_solution": best_solution,
+                        "best_fitness": best_fitness,
+                        "history": history,})
+
+    return results
