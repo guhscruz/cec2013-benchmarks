@@ -1,5 +1,7 @@
 from src.benchmarks.function_factory import ProblemFactory
 from mealpy import FloatVar, SHADE
+import numpy as np
+import random
 
 def run_shade(fid, ndim, epoch, pop_size, wf):
     factory = ProblemFactory(ndim=ndim)
@@ -14,7 +16,10 @@ def run_shade(fid, ndim, epoch, pop_size, wf):
 
     results = []
 
-    for seed in range (1):
+    for seed in range (30):
+        np.random.seed(seed)
+        random.seed(seed)
+
         model = SHADE.OriginalSHADE(epoch=epoch, pop_size=pop_size, wf=wf)
         best = model.solve(problem_dict, seed=seed)
 

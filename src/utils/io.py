@@ -10,7 +10,7 @@ class NumpyEncoder(json.JSONEncoder):
             return obj.tolist()
         return super().default(obj)
 
-for i in range(29):
+for i in range(1):
     solution = run_shade(i + 1, 30, 100, 30, 0.9)
 
     def save_json(solution):
