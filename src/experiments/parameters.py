@@ -1,5 +1,3 @@
-# src/experiments/parameters.py
-
 cec2013_params = {
     1: {"name": "Sphere Function", 
         "bias": -1400, "lb": -100, "ub": 100, "ndim": 30, "epoch": 1000, "pop_size": 50, "wf": 0.5},

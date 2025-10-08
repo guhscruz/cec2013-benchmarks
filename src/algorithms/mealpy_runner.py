@@ -3,7 +3,7 @@ from mealpy import FloatVar, SHADE
 import numpy as np
 import random
 
-def run_shade(fid, ndim, epoch, pop_size, wf):
+def run_shade(fid, ndim, epoch, pop_size, wf, seed):
     factory = ProblemFactory(ndim=ndim)
     objective, bounds = factory.get_problem(fid=fid)
 
@@ -16,24 +16,23 @@ def run_shade(fid, ndim, epoch, pop_size, wf):
 
     results = []
 
-    for seed in range (30):
-        np.random.seed(seed)
-        random.seed(seed)
+    np.random.seed(seed)
+    random.seed(seed)
 
-        model = SHADE.OriginalSHADE(epoch=epoch, pop_size=pop_size, wf=wf)
-        best = model.solve(problem_dict, seed=seed)
+    model = SHADE.OriginalSHADE(epoch=epoch, pop_size=pop_size, wf=wf)
+    best = model.solve(problem_dict, seed=seed)
 
-        best_solution = best.solution
-        best_fitness = best.target.fitness
+    best_solution = best.solution
+    best_fitness = best.target.fitness
 
-        history = model.history.list_global_best_fit 
+    history = model.history.list_global_best_fit 
 
-        results.append({"id": fid,
-                        "seed": seed,
-                        "lb": lb,
-                        "ub": ub,
-                        "best_solution": best_solution,
-                        "best_fitness": best_fitness,
-                        "history": history,})
+    results.append({"id": fid,
+                    "seed": seed,
+                    "lb": lb,
+                    "ub": ub,
+                    "best_solution": best_solution,
+                    "best_fitness": best_fitness,
+                    "history": history,})
 
     return results
