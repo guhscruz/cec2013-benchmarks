@@ -19,6 +19,7 @@ def save_json(solution):
                 "best_solution": solution[0]["best_solution"],
                 "best_fitness": solution[0]["best_fitness"],
                 "history": solution[0]["history"],
+                "time": solution[0]["time"]
                 }
     
     id = dictionary["id"]
