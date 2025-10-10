@@ -1,10 +1,3 @@
-'''
-- Percorrer todas as pastas dentro de data/mealpy-shade
-- Para cada função, percorrer todos os json
-- Pegar todos os valores importantes
-- Fazer todos os calculos necessários
-- Retonar valores
-'''
 import numpy as np
 import os
 import json
@@ -52,8 +45,3 @@ class JsonParser:
                 summaries.append(resolution)
 
         return summaries
-        
-parser = JsonParser(path_dir="data/mealpy-shade")
-
-results = parser.summarize_all()
-print(results)
