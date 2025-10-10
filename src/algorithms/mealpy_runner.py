@@ -40,6 +40,6 @@ def run_shade(fid, ndim, epoch, pop_size, wf, seed):
                     "best_solution": best_solution,
                     "best_fitness": best_fitness,
                     "history": history,
-                    "time": execution_time})
+                    "time_seconds": execution_time})
 
     return results

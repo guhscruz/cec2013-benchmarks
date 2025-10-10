@@ -19,7 +19,7 @@ def save_json(solution):
                 "best_solution": solution[0]["best_solution"],
                 "best_fitness": solution[0]["best_fitness"],
                 "history": solution[0]["history"],
-                "time": solution[0]["time"]
+                "time_seconds": solution[0]["time_seconds"]
                 }
     
     id = dictionary["id"]
@@ -28,9 +28,9 @@ def save_json(solution):
     if not os.path.exists(os.path.join(os.getcwd(), "data/mealpy-shade")):
         os.mkdir("data/mealpy-shade")
 
-    if not os.path.exists(os.path.join(os.getcwd(), f"data/mealpy-shade/function{id}")):
-        os.mkdir(f"data/mealpy-shade/function{id}")
+    if not os.path.exists(os.path.join(os.getcwd(), f"data/mealpy-shade/F{id}")):
+        os.mkdir(f"data/mealpy-shade/F{id}")
 
 
-    with open(f"data/mealpy-shade/function{id}/function_{id}_seed_{seed}.json", "w") as fp:
+    with open(f"data/mealpy-shade/F{id}/function_{id}_seed_{seed}.json", "w") as fp:
         json.dump(dictionary, fp, indent=4, cls=NumpyEncoder)
