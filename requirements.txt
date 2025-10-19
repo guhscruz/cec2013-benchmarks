@@ -1,0 +1,29 @@
+# =============================
+# Core dependencies for CEC2013 Benchmark Project
+# =============================
+
+# Scientific and numerical computing
+numpy>=1.26.0
+scipy>=1.11.0
+pandas>=2.2.0
+
+# Data visualization
+matplotlib>=3.8.0
+
+# Evolutionary algorithms and optimization frameworks
+mealpy>=3.0.0
+opfunu>=1.0.1
+pygmo>=2.19.0
+
+# Utilities
+tqdm>=4.66.0        # progress bars
+seaborn>=0.13.0     # advanced visualization (optional)
+json5>=0.9.14       # flexible JSON parsing
+
+# =============================
+# Development and experimentation tools
+# =============================
+jupyterlab>=4.0.0   # interactive experiments and debugging
+
+# Optional: performance optimization (recommended for heavy numerical workloads)
+numba>=0.60.0
